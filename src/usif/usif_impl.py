@@ -107,6 +107,10 @@ class UserSimpleInterFace(UsifInterface):
         action = str(input('User password for source name: '))
         if len(action) > 0:
             selected = self.password_repository.get(action, self.current_session.username)
+            if selected is None or len(selected[1].sources) == 0:
+                print('Is there an entry like that? Show me..')
+                time.sleep(1)
+                return
             selected_password = selected[1].sources[0]['source_pwd']
             selected_password = HashingUtils.un_hash_value(
                 value=selected_password,
@@ -131,14 +135,25 @@ class UserSimpleInterFace(UsifInterface):
             password = ValueGenerator.generate_password(length)
         elif action[0].lower() == 'c':
             password = str(input('Please enter a new password: '))
+            if len(password) == 0:
+                print('No empty passwords')
+                time.sleep(1)
+                return
         else:
             print('What?')
             time.sleep(1)
+            return
 
         password_username = str(input('Please enter a username for this password: '))
-        object_name = str(input('Please choose the subject for this: '))
+        if len(password_username) == 0:
+            print('You find that funny?')
+            time.sleep(1)
+            return
 
-        if len(password_username) or len(object_name):
+        object_name = str(input('Please choose the subject for this: '))
+        if len(object_name) == 0:
+            print('Very clever..')
+            time.sleep(1)
             return
 
         hashed_pwd = HashingUtils.hash_value(
