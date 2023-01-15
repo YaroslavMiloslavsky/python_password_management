@@ -47,7 +47,7 @@ class RepositoryNoSQLInterface(RepositoryInterface):
         """Depends on the implementation this should seek the object by this name"""
         pass
 
-    def update(self, object_name, username, new_password):
+    def update(self, object_name, username, new_password, source_username):
         """Depends on the implementation this should update the object by this name"""
         pass
 

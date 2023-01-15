@@ -6,15 +6,17 @@ class DocumentBasedEntry:
         pass
 
 class SourceEntry(DocumentBasedEntry):
-    def __init__(self, source_name, source_pwd, previous_pwd=None):
+    def __init__(self, source_name, source_username, source_pwd, previous_pwd=None):
         super().__init__()
         self.source_name = source_name
         self.source_pwd = source_pwd
         self.previous_pwd = previous_pwd
+        self.source_username = source_username
 
     def to_json(self):
         return {
             'source_name' : self.source_name,
+            'source_username' : self.source_username,
             'source_pwd' : self.source_pwd,
             'previous_pwd' : self.previous_pwd if self.source_pwd else None
         }

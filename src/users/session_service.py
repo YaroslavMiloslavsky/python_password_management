@@ -57,5 +57,8 @@ class SessionService(AuthServiceInterface):
             time.sleep(1.5)
 
     def set_current_user(self, username, password):
+        if username is None or password is None:
+            print('Cannot get empty user, can I?')
+            return
         self.username = username
         self.password = password

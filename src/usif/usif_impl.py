@@ -46,11 +46,15 @@ class UserSimpleInterFace(UsifInterface):
         print("Glad to hear you wish to join our service")
         username = str(input('Please chose username: '))
         password = maskpass.askpass(mask='*')
-        self.current_session.set_current_user(username, password)
-        self.password_repository.save(PasswordNewEntry(
-            username=self.current_session.username
-        ))
-        self.current_session.register_new_user()
+        if len(username) > 0 and password is not None and len(password) > 0:
+            self.current_session.set_current_user(username, password)
+            self.password_repository.save(PasswordNewEntry(
+                username=self.current_session.username
+            ))
+            self.current_session.register_new_user()
+        else:
+            print("Please don't use these credentials")
+            time.sleep(1)
         return self.current_session.auth
 
     def _clear(self):
@@ -75,6 +79,7 @@ class UserSimpleInterFace(UsifInterface):
                 print('-------------------------------')
                 print(
                     f'App:      {entry["source_name"]}\n'
+                    f'Username: {entry["source_username"]}\n'
                     f'Password: {password}'
                 )
                 print('-------------------------------')
@@ -99,16 +104,19 @@ class UserSimpleInterFace(UsifInterface):
         self._clear()
         print('You passwords:')
         self._show_all_entries()
-        action = str(input('Enter app name you wish to use: '))
-        selected = self.password_repository.get(action, self.current_session.username)
-        selected_password = selected[1].sources[0]['source_pwd']
-        selected_password = HashingUtils.un_hash_value(
-            value=selected_password,
-            secret=self.current_session.password_service.get_key(self.current_session.username),
-            salt=self.current_session.password_service.get_salt(self.current_session.username)
-        )
-
-        pyperclip.copy(selected_password)
+        action = str(input('User password for source name: '))
+        if len(action) > 0:
+            selected = self.password_repository.get(action, self.current_session.username)
+            selected_password = selected[1].sources[0]['source_pwd']
+            selected_password = HashingUtils.un_hash_value(
+                value=selected_password,
+                secret=self.current_session.password_service.get_key(self.current_session.username),
+                salt=self.current_session.password_service.get_salt(self.current_session.username)
+            )
+            pyperclip.copy(selected_password)
+        else:
+            print('No such source.. but you know that')
+            time.sleep(1)
 
     def add_new_password(self):
         self._clear()
@@ -116,6 +124,8 @@ class UserSimpleInterFace(UsifInterface):
         print('(C)reate')
         print('(G)enerate')
         action = str(input('Please choose an option: '))
+        if len(action) == 0:
+            return
         if action[0].lower() == 'g':
             length = int(input('Please enter length: '))
             password = ValueGenerator.generate_password(length)
@@ -125,7 +135,12 @@ class UserSimpleInterFace(UsifInterface):
             print('What?')
             time.sleep(1)
 
+        password_username = str(input('Please enter a username for this password: '))
         object_name = str(input('Please choose the subject for this: '))
+
+        if len(password_username) or len(object_name):
+            return
+
         hashed_pwd = HashingUtils.hash_value(
             value=password,
             secret=self.current_session.password_service.get_key(self.current_session.username),
@@ -134,5 +149,6 @@ class UserSimpleInterFace(UsifInterface):
         self.password_repository.update(
             username=self.current_session.username,
             new_password= hashed_pwd.decode('utf-8'),
-            object_name= object_name
+            object_name= object_name,
+            source_username=password_username
         )

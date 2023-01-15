@@ -41,12 +41,14 @@ class PWDRepositoryTest(unittest.TestCase):
             SourceEntry(
                 source_name = 'app1',
                 source_pwd = '1234',
-                previous_pwd = '444ttt'
+                previous_pwd = '444ttt',
+                source_username='username_1'
             ),
             SourceEntry(
                 source_name='app2',
                 source_pwd='abc',
-                previous_pwd='aabbcc'
+                previous_pwd='aabbcc',
+                source_username='username_2'
             )
         ]
         self.repository.save(entry_1)
@@ -56,11 +58,13 @@ class PWDRepositoryTest(unittest.TestCase):
             SourceEntry(
                 source_name = 'app55',
                 source_pwd = 'fff',
+                source_username='username_x'
             ),
             SourceEntry(
                 source_name='app_new',
                 source_pwd='ee',
-                previous_pwd='44444'
+                previous_pwd='44444',
+                source_username='username_y'
             )
         ]
         self.repository.save(entry_2)
@@ -69,11 +73,11 @@ class PWDRepositoryTest(unittest.TestCase):
         index, entry = self.repository.get('app1', 'user1')
         self.assertEqual(len(entry.sources), 1)
         self.assertEqual(index, 1)
-        self.assertEqual(entry.sources[0], {'source_name': 'app1', 'source_pwd': '1234', 'previous_pwd':'444ttt'})
+        self.assertEqual(entry.sources[0], {'source_name': 'app1', 'source_pwd': '1234', 'previous_pwd':'444ttt', 'source_username':'username_1'})
         index, entry = self.repository.get('app2', 'user1')
         self.assertEqual(len(entry.sources), 1)
         self.assertEqual(index, 1)
-        self.assertEqual(entry.sources[0], {'source_name': 'app2', 'source_pwd': 'abc', 'previous_pwd':'aabbcc'})
+        self.assertEqual(entry.sources[0], {'source_name': 'app2', 'source_pwd': 'abc', 'previous_pwd':'aabbcc', 'source_username':'username_2'})
 
         # Now let's get object that is not there
         index, entry = self.repository.get('app55', 'user1')
@@ -84,7 +88,7 @@ class PWDRepositoryTest(unittest.TestCase):
         index, entry = self.repository.get('app_new', 'user2')
         self.assertEqual(len(entry.sources), 1)
         self.assertEqual(index, 2)
-        self.assertEqual(entry.sources[0], {'source_name': 'app_new', 'source_pwd': 'ee', 'previous_pwd': '44444'})
+        self.assertEqual(entry.sources[0], {'source_name': 'app_new', 'source_pwd': 'ee', 'previous_pwd': '44444', 'source_username':'username_y'})
 
         # Now let's get object that is not there
         index, entry = self.repository.get('app1', 'user2')
@@ -101,12 +105,14 @@ class PWDRepositoryTest(unittest.TestCase):
         entry_1.sources = [
             SourceEntry(
                 source_name='app1',
-                source_pwd='1234'
+                source_pwd='1234',
+                source_username='username_1'
             ),
             SourceEntry(
                 source_name='app2',
                 source_pwd='abc',
-                previous_pwd = '44433'
+                previous_pwd = '44433',
+                source_username='username_2'
             )
         ]
         self.repository.save(entry_1)
@@ -138,12 +144,14 @@ class PWDRepositoryTest(unittest.TestCase):
         entry_1.sources = [
             SourceEntry(
                 source_name='app1',
-                source_pwd='1234'
+                source_pwd='1234',
+                source_username='username_1'
             ),
             SourceEntry(
                 source_name='app2',
                 source_pwd='abc',
-                previous_pwd = '44433'
+                previous_pwd = '44433',
+                source_username='username_2'
             )
         ]
         self.repository.save(entry_1)
@@ -178,17 +186,19 @@ class PWDRepositoryTest(unittest.TestCase):
         entry_1.sources = [
             SourceEntry(
                 source_name='app1',
-                source_pwd='1234'
+                source_pwd='1234',
+                source_username='username_1'
             ),
             SourceEntry(
                 source_name='app2',
                 source_pwd='abc',
-                previous_pwd='44433'
+                previous_pwd='44433',
+                source_username='username_2'
             )
         ]
         self.repository.save(entry_1)
         entries = self.repository.get_all('user1')
-        self.assertListEqual([{'source_name': 'app1', 'source_pwd': '1234', 'previous_pwd': None}, {'source_name': 'app2', 'source_pwd': 'abc', 'previous_pwd': '44433'}], entries)
+        self.assertListEqual([{'source_name': 'app1', 'source_pwd': '1234', 'previous_pwd': None, 'source_username':'username_1'}, {'source_name': 'app2', 'source_pwd': 'abc', 'previous_pwd': '44433', 'source_username':'username_2'}], entries)
 
     def tearDown(self):
         self.repository.db.drop_tables()

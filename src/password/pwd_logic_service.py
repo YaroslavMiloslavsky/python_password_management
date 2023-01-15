@@ -2,7 +2,6 @@ from src.interface.service import PasswordGeneratorLogicServiceInterface
 from src.password.pwd_dto import PasswordValuesDTO, PasswordAddValuesDTO
 from src.password.pwd_repository import SecretsRepository
 from src.utils.input_utils import UserInputUtil
-from src.utils.value_generation_util import ValueGenerator
 
 
 class PasswordLogicService(PasswordGeneratorLogicServiceInterface):

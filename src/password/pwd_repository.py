@@ -41,7 +41,7 @@ class PasswordRepository(PasswordsRepositoryInterface):
             documents) > 0 and documents is not None else None
         return entry_id, PasswordGetEntry(username=username, sources=sources) if sources is not None else None
 
-    def update(self, object_name: str, username: str, new_password: str):
+    def update(self, object_name: str, username: str, new_password: str, source_username: str = None):
         """For adding and removing passwords
             New password is empty? delete the entry"""
         self.logging.debug(f'Updating {object_name} for {username}')
@@ -59,7 +59,8 @@ class PasswordRepository(PasswordsRepositoryInterface):
                     new_entry = SourceEntry(
                         source_name=object_name,
                         source_pwd=new_password,
-                        previous_pwd=None
+                        previous_pwd=None,
+                        source_username=source_username
                     )
                     sources[0]['sources'].append(new_entry.to_json())
                 changed_index = self.db.update({'sources': updated_sources}, query.username == username)
