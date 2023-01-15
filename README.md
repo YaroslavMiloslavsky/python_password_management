@@ -1,14 +1,4 @@
-
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
-
-
-
-## Password Tool
+# Password Tool
 
 [![Product Name Screen Shot][screenshot]]
 
@@ -19,6 +9,12 @@ Well now you can!
 With the CLI tool you can manage your passwords offline in a terminal.
 <br>
 Or... you could play around and break the code
+
+<br>
+
+## Why Should You Bother At All?
+The passwords, both user passowrd and saved passowrds are being encrypted, so there is no way one could just take them and use them
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -40,11 +36,19 @@ Let's see what should you need for the project up and running on your local mach
    ```
 2. (Optional) Create a virtual python environment
    ```sh
-   npm install
+   python -m venv /path/to/new/virtual/environment
    ```
-3. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
+3. Install requirments from the `requirements.txt `
+   ```sh
+   pip install -r requirements.txt
+   ```
+4. If you have your venv, activate it
+   ```sh
+   venv\Sctipts\activate
+   ```
+5. Run the tool
+   ```sh
+   python main.py
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -52,15 +56,19 @@ Let's see what should you need for the project up and running on your local mach
 
 ## Usage
 
-You should use it to store passwords
+You should use it to store passwords...
+<br>
+Or any information you wish to encrypt
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ## Roadmap
 
-- [ ] Add roadmap
-- [ ] Add open issues 
+- Add roadmap
+- Add open issues 
+- Design a better README file
+- Add much more features (in the roadmap)
 
 See the [open issues](https://github.com/YaroslavMiloslavsky/python_password_management/issues) for a full list of proposed features (and known issues).
 
@@ -73,20 +81,4 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-
-
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/YaroslavMiloslavsky/python_password_management/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/YaroslavMiloslavsky/python_password_management/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/YaroslavMiloslavsky/python_password_management/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/YaroslavMiloslavsky/python_password_management/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/YaroslavMiloslavsky/python_password_management/blob/master/LICENSE
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/yaroslav-miloslavsky/
 [screenshot]: images/screenshot.png
