@@ -1,6 +1,6 @@
 # Password Tool
 
-[![Product Name Screen Shot][screenshot]]
+![Product Name Screen Shot][screenshot]
 
 Ever wanted to try a CLI base tool for generating and storing passwords?
 <br>
