@@ -13,10 +13,7 @@ Or... you could play around and break the code
 <br>
 
 ## Why Should You Bother At All?
-The passwords, both user passowrd and saved passowrds are being encrypted, so there is no way one could just take them and use them
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+The passwords, both user password and saved passwords are being encrypted, so there is no way one could just take them and use them
 
 
 ## Getting Started
@@ -51,16 +48,12 @@ Let's see what should you need for the project up and running on your local mach
    python main.py
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 
 ## Usage
 
 You should use it to store passwords...
 <br>
 Or any information you wish to encrypt
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 ## Roadmap
@@ -72,13 +65,9 @@ Or any information you wish to encrypt
 
 See the [open issues](https://github.com/YaroslavMiloslavsky/python_password_management/issues) for a full list of proposed features (and known issues).
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- LICENSE -->
 ## License
 
 Distributed under the MIT License. See `LICENSE` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 [screenshot]: images/screenshot.png
