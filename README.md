@@ -38,13 +38,13 @@ Let's see what should you need for the project up and running on your local mach
    ```sh
    python -m venv /path/to/new/virtual/environment
    ```
-3. Install requirments from the `requirements.txt `
-   ```sh
-   pip install -r requirements.txt
-   ```
-4. If you have your venv, activate it
+3. If you have your venv, activate it
    ```sh
    venv\Sctipts\activate
+   ```
+4. Install requirments from the `requirements.txt `
+   ```sh
+   pip install -r requirements.txt
    ```
 5. Run the tool
    ```sh
