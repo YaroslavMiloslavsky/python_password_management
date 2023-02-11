@@ -33,19 +33,23 @@ Let's see what should you need for the project up and running on your local mach
    ```
 2. (Optional) Create a virtual python environment
    ```sh
-   python -m venv /path/to/new/virtual/environment
+   python -m venv path-to-venv
    ```
 3. If you have your venv, activate it
    ```sh
-   venv\Sctipts\activate
+   venv\Scripts\activate
    ```
-4. Install requirments from the `requirements.txt `
+4. Install requirements from the `requirements.txt`
    ```sh
    pip install -r requirements.txt
    ```
 5. Run the tool
    ```sh
    python main.py
+   ```
+6. If you wish to test the code, from the rood directory run
+   ```commandline
+   python -m unittest discover -s .\test\ -p 'test_*.py'
    ```
 
 
